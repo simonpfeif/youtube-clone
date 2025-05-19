@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Fragment } from "react";
 import { signInWithGoogle, signOut } from "@/app/utils/firebase/firebase";
