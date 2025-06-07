@@ -1,14 +1,14 @@
 import {httpsCallable} from "firebase/functions"
-import {app} from "./firebase"
 import { functions } from './firebase';
 
-const generateUploadUrl = httpsCallable(functions, "generateUploadUrl");
-const getVideosFunction = httpsCallable(functions, "getVideos");
+// const generateUploadUrl = httpsCallable(functions, "generateUploadUrl");
+// const getVideosFunction = httpsCallable(functions, "getVideos");
+const getVideosFunction = httpsCallable<undefined, Video[]>(functions, "getVideos");
+const generateUploadUrl = httpsCallable<{ fileExtension: string }, { url: string }>(functions, "generateUploadUrl");
 
 export async function uploadVideo(file: File) {
-
-    const response: any = await generateUploadUrl({
-        fileExtension: file.name.split('.').pop()
+    const response = await generateUploadUrl({
+        fileExtension: file.name.split('.').pop() || ''
     })
 
     // Upload the file via the signed URL
@@ -32,6 +32,6 @@ export interface Video {
 }
 
 export async function getVideos() {
-    const response: any = await getVideosFunction();
-    return response.data as Video[];
+    const response = await getVideosFunction();
+    return response.data;
 }

@@ -3,11 +3,11 @@
 import Image from "next/image";
 import styles from "./navbar.module.css";
 import Link from "next/link";
-import { SignIn } from "../signin/signin";
+import { SignIn } from "../signin/Signin";
 import { onAuthStateChangedHelper } from "@/app/utils/firebase/firebase";
 import { useEffect, useState } from "react";
 import { User } from "firebase/auth";
-import Upload from "../upload/upload";
+import Upload from "../upload/Upload";
 
 
 export default function Navbar() {
